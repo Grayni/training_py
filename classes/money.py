@@ -34,7 +34,7 @@ class Money:
 
 
 Bill = Money(101, 99)
-print(Bill)  # Ваше состояние составляет 101 долларов 99 центов
+print(Bill) # Ваше состояние составляет 101 долларов 99 центов
 print(Bill.dollars, Bill.cents)  # 101 99
 Bill.dollars = 666
 print(Bill)  # Ваше состояние составляет 666 долларов 99 центов
