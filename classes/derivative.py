@@ -9,11 +9,12 @@ class Derivative:
         return (self.__func(x + dx) - self.__func(x)) / dx
 
 
+@Derivative
 def sin_func(value):
     return math.sin(value)
+# alternative option
+# sin_func = Derivative(sin_func)
 
-
-sin_func = Derivative(sin_func)
 
 df_sin_func = sin_func(math.pi/4)
 
