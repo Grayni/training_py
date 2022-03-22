@@ -36,6 +36,6 @@ geom = [
     Triangle(4, 5, 6), Triangle(1, 2, 3)
 ]
 
-for x in geom:
-    print(x.get_pr())
+for s in geom:
+    print(s.get_pr())
 
