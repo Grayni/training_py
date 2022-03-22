@@ -26,6 +26,8 @@ class Rect(Geom):
         print('Draw Rect')
 
 
+
+
 line = Line(0, 0, 10, 20)
 rect = Rect(1, 2, 3, 4, 'red')
 print(line.__dict__)
