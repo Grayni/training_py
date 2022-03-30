@@ -26,4 +26,4 @@ def binary_search(arr, value):
 
 
 print(binary_search(lst, 6))
-# print(binary_search(lst, 16))
+
