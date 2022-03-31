@@ -1,3 +1,6 @@
+from math import gcd
+
+
 def algorithm_euclid(a, b):
     while a != 0 and b != 0:
         if a > b:
@@ -7,4 +10,7 @@ def algorithm_euclid(a, b):
     return a + b
 
 
-print(algorithm_euclid(1680, 640))
+print('euclid`s algorithm:', algorithm_euclid(1680, 640))
+
+# alternative
+print('math.gcd:', gcd(1680, 640))
