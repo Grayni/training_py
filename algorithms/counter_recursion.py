@@ -7,3 +7,4 @@ def counter_func(arr):
 
 
 print(counter_func([1, 2, 3, 4, 5, 3, 3]))
+
