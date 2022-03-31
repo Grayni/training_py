@@ -7,4 +7,4 @@ def algorithm_euclid(a, b):
     return a + b
 
 
-print(algorithm_euclid(24, 18))
+print(algorithm_euclid(1680, 640))
