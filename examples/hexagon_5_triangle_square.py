@@ -1,4 +1,5 @@
-# hexagon + 5 triangle square
+# hexagon + 5 triangles square
+# pic: ~/pictures/hexagon_5_triangles.jpg
 side = 85
 
 # formula: 11 * S_triangle
