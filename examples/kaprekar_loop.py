@@ -1,12 +1,31 @@
-def kaprekar_loop(n):
+import decomposition
+import kaprekar_step as ks
 
+
+# monolith
+# def kaprekar_loop(n):
+#
+#     while n != 6174:
+#         L = list(map(int, str(n)))
+#         min_num = int(''.join(map(str, sorted(L))))
+#         max_num = int(''.join(map(str, sorted(L)[::-1])))
+#         n = max_num - min_num
+#         print(n)
+#     return ''
+
+
+def kaprekar_step(L):
+    min_num = int(''.join(map(str, sorted(L))))
+    max_num = int(''.join(map(str, sorted(L)[::-1])))
+    return max_num - min_num
+
+
+def kaprekar_loop(n):
     while n != 6174:
-        L = list(map(int, str(n)))
-        min_num = int(''.join(map(str, sorted(L))))
-        max_num = int(''.join(map(str, sorted(L)[::-1])))
-        n = max_num - min_num
         print(n)
-    return ''
+        n = decomposition.numerics(n)
+        n = ks.kaprekar_step(n)
+    print(n)
 
 
 num = 8654
