@@ -14,12 +14,6 @@ import kaprekar_step as ks
 #     return ''
 
 
-def kaprekar_step(L):
-    min_num = int(''.join(map(str, sorted(L))))
-    max_num = int(''.join(map(str, sorted(L)[::-1])))
-    return max_num - min_num
-
-
 def kaprekar_loop(n):
     while n != 6174:
         print(n)
