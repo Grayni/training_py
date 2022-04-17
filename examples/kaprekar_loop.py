@@ -1,5 +1,5 @@
-import decomposition
-import kaprekar_step as ks
+from decomposition import numerics
+from kaprekar_step import kaprekar_step
 
 
 # monolith
@@ -15,14 +15,19 @@ import kaprekar_step as ks
 
 
 def kaprekar_loop(n):
-    while n != 6174:
+    if n == 1000:
+        print('Ошибка! На вход подано число 1000')
+    elif len(set(map(int, str(n)))) == 1:
+        print(f'Ошибка! На вход подано число {n} - все цифры одинаковые')
+    else:
+        while n != 6174:
+            print(n)
+            n = numerics(n)
+            n = kaprekar_step(n)
         print(n)
-        n = decomposition.numerics(n)
-        n = ks.kaprekar_step(n)
-    print(n)
 
 
-num = 8654
+num = 1111
 
 print(kaprekar_loop(num))
 
