@@ -4,6 +4,6 @@ def kaprekar_step(L):
     return max_num - min_num
 
 
-l = [4, 5, 6, 8]
-
-print(kaprekar_step(l))
+# l = [4, 5, 6, 8]
+#
+# print(kaprekar_step(l))
