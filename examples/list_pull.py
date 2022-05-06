@@ -16,7 +16,7 @@ print(list_pull([['one'], [343, 2], [[9, 9, 9], [[666, 666], [[[[42]]]]]]]))
 
 def list_pull(L):
     ls0=[]
-    lscopy=L.copy()
+    lscopy=L[:]
     for outer in lscopy:
         if type(outer) is list:
             lscopy.extend(outer)
