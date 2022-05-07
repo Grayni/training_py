@@ -1,16 +1,5 @@
 def mimic_dict(string):
-    string = string.split(' ')
-    arr = []
-
-    for s in string:
-        if '\n' in s:
-            arr.extend(s.split('\n'))
-        elif '\t' in s:
-            arr.extend(s.split('\t'))
-        else:
-            arr.append(s)
-        if '' in arr:
-            arr.remove('')
+    arr = string.split()
 
     dictionary = {'': [arr[0]]}
     print(arr)
