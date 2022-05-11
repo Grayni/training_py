@@ -4,3 +4,8 @@ x = np.ravel(x)
 x = [val for val in x if val > 3]
 
 print(x)
+
+# variant 2
+y = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9], [0, 0, 9]])
+print(list(y[y>3]))
+
