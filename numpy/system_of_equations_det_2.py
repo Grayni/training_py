@@ -16,3 +16,12 @@ if not(det):
 else:
     print(*np.linalg.solve([d['arr_1'][:3], d['arr_2'][:3], d['arr_3'][:3]], [d['arr_1'][-1], d['arr_2'][-1], d['arr_3'][-1]]))
 
+
+# variant 2
+
+m=np.array([input().split() for i in range(3)], dtype=float)
+
+if np.linalg.det(m[:,:-1]):
+    print(*np.linalg.solve(m[:,:-1], m[:,-1]))
+else:
+    print('Система не имеет решений')
