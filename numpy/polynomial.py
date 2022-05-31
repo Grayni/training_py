@@ -1,7 +1,8 @@
 import numpy as np
 # find coefficients of polynomial
-inp = '3'  # value of polynomials
-inp_arr = ['-2 0', '2 0', '0 -4']  # [[x y], [x y] ...]
+inp = '6'  # value of polynomials
+
+inp_arr = ['0 1', '1 1', '2 25', '-1 1', '-2 -23', '0.5 0.90625']  # [[x y], [x y] ...]
 M = np.array([])
 v = np.array([])
 
