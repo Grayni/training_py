@@ -1,18 +1,24 @@
 import numpy as np
-inp = '3'
-inp_arr = ['-2 0', '2 0', '0 -4']
+# find coefficients of polynomial
+inp = '3'  # value of polynomials
+inp_arr = ['-2 0', '2 0', '0 -4']  # [[x y], [x y] ...]
 M = np.array([])
 v = np.array([])
-arr = np.array([list(map(int, inp_arr[i].split())) for i in range(int(inp))])
 
-M1 = np.array([[1, 1], [1, -1]])
-v = np.array(list(map(int, input().split())))
 
-matrix = np.linalg.solve(M1, v)
+for i in range(int(inp)):
+    empty = np.array([])
+    v = np.append(v, float(inp_arr[i].split()[1]))
 
-if (matrix % 1).sum() or matrix[matrix > 0].shape[0] != 2:
-    print('Такой класс не существует')
-else:
-    print(*matrix.astype(int))
+    for j in range(int(inp)):
+        empty = np.append(empty, float(inp_arr[i].split()[0]) ** j)
 
-print(arr)
+    if M.shape[0] == 0:
+        M = np.array([empty])
+    else:
+        M = np.concatenate((M, [empty]))
+
+
+print(M, '\n')
+print(v, '\n')
+print(np.linalg.solve(M, v))
