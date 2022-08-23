@@ -1,81 +1,81 @@
-﻿Variable;Type;Segment;Expectation;Conclusion;Comments
-Id;;;-;;
-MSSubClass;;;High;;
-MSZoning;;;High;;
-LotFrontage;;;Low;;
-LotArea;;;High;;
-Street;;;Medium;;
-Alley;;;Low;;
-LotShape;;;Medium;;
-LandContour;;;Medium;;
-Utilities;;;High;;
-LotConfig;;;Medium;;
-LandSlope;;;Low;;
-Neighborhood;;;High;;
-Condition1;;;Medium;;
-Condition2;;;Medium;;
-BldgType;;;High;;
-HouseStyle;;;Medium;;
-OverallQual;;;Medium;;
-OverallCond;;;High;;
-YearBuilt;;;Medium;;
-YearRemodAdd;;;Medium;;
-RoofStyle;;;Low;;
-RoofMatl;;;Low;;
-Exterior1st;;;Low;;
-Exterior2nd;;;Low;;
-MasVnrType;;;Low;;
-MasVnrArea;;;Low;;
-ExterQual;;;Medium;;
-ExterCond;;;Medium;;
-Foundation;;;Medium;;
-BsmtQual;;;Low;;
-BsmtCond;;;Medium;;
-BsmtExposure;;;Medium;;
-BsmtFinType1;;;Medium;;
-BsmtFinSF1;;;High;;
-BsmtFinType2;;;Medium;;
-BsmtFinSF2;;;High;;
-BsmtUnfSF;;;Low;;
-TotalBsmtSF;;;Medium;;
-Heating;;;Medium;;
-HeatingQC;;;Medium;;
-CentralAir;;;Medium;;
-Electrical;;;Low;;
-1stFlrSF;;;High;;
-2ndFlrSF;;;High;;
-LowQualFinSF;;;Medium;;
-GrLivArea;;;Low;;
-BsmtFullBath;;;Low;;
-BsmtHalfBath;;;Low;;
-FullBath;;;Medium;;
-HalfBath;;;Low;;
-Bedroom;;;Medium;;
-Kitchen;;;Medium;;
-KitchenQual;;;Medium;;
-TotRmsAbvGrd;;;Medium;;
-Functional;;;Medium;;
-Fireplaces;;;Low;;
-FireplaceQu;;;Low;;
-GarageType;;;Medium;;
-GarageYrBlt;;;Low;;
-GarageFinish;;;Low;;
-GarageCars;;;Medium;;
-GarageArea;;;Medium;;
-GarageQual;;;Medium;;
-GarageCond;;;Low;;
-PavedDrive;;;Medium;;
-WoodDeckSF;;;Medium;;
-OpenPorchSF;;;Low;;
-EnclosedPorch;;;Low;;
-3SsnPorch;;;Low;;
-ScreenPorch;;;Low;;
-PoolArea;;;Medium;;
-PoolQC;;;Medium;;
-Fence;;;Medium;;
-MiscFeature;;;Medium;;
-MiscVal;;;Low;;
-MoSold;;;Low;;
-YrSold;;;Low;;
-SaleType;;;High;;
-SaleCondition;;;High;;
+Variable	Type	Segment	Expectation	Conclusion	Comments
+Id		-	-		
+MSSubClass		building	High		
+MSZoning		building	High		
+LotFrontage		Location	Low		
+LotArea		Space	High		
+Street		Location	Medium		
+Alley		Location	Low		
+LotShape		Space	Medium		
+LandContour		Space	Medium		
+Utilities		building	High		
+LotConfig		Space	Medium		
+LandSlope		Space	Low		
+Neighborhood		Location	High		
+Condition1		Location	Medium		
+Condition2		Location	Medium		
+BldgType		Building	High		
+HouseStyle		Building	Medium		
+OverallQual		Building	Medium		
+OverallCond		Building	High		
+YearBuilt		Building	Medium		
+YearRemodAdd		Building	Medium		
+RoofStyle		Building	Low		
+RoofMatl		Building	Low		
+Exterior1st		Building	Low		
+Exterior2nd		Building	Low		
+MasVnrType		Building	Low		
+MasVnrArea		Space	Low		
+ExterQual		Space	Medium		
+ExterCond		Building	Medium		
+Foundation		Building	Medium		
+BsmtQual		Space	Low		
+BsmtCond		Building	Medium		
+BsmtExposure		Building	Medium		
+BsmtFinType1		Building	Medium		
+BsmtFinSF1		Space	High		
+BsmtFinType2		Building	Medium		
+BsmtFinSF2		Space	High		
+BsmtUnfSF		Space	Low		
+TotalBsmtSF		Space	Medium		
+Heating		Building	Medium		
+HeatingQC		Building	Medium		
+CentralAir		Building	Medium		
+Electrical		Building	Low		
+1stFlrSF		Space	High		
+2ndFlrSF		Space	High		
+LowQualFinSF		Space	Medium		
+GrLivArea		Space	High		
+BsmtFullBath		Building	Low		
+BsmtHalfBath		Building	Low		
+FullBath		Building	Medium		
+HalfBath		Building	Low		
+Bedroom		Building	Medium		
+Kitchen		Building	Medium		
+KitchenQual		Building	Medium		
+TotRmsAbvGrd		Building	Medium		
+Functional		Building	Medium		
+Fireplaces		Building	Low		
+FireplaceQu		Building	Low		
+GarageType		Building	Medium		
+GarageYrBlt		Building	Low		
+GarageFinish		Building	Low		
+GarageCars		Building	Medium		
+GarageArea		Space	Medium		
+GarageQual		Building	Medium		
+GarageCond		Building	Low		
+PavedDrive		Location	Medium		
+WoodDeckSF		Space	Medium		
+OpenPorchSF		Space	Low		
+EnclosedPorch		Space	Low		
+3SsnPorch		Space	Low		
+ScreenPorch		Space	Low		
+PoolArea		Space	Medium		
+PoolQC		Building	Medium		
+Fence		Building	Medium		
+MiscFeature		Building	Medium		
+MiscVal		Building	Low		
+MoSold		Building	Low		
+YrSold		Building	Low		
+SaleType		Building	High		
+SaleCondition		Building	High		
