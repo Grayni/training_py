@@ -5,7 +5,8 @@ def monty_hall_problem(choice_door, agreement):
     doors = [1, 2, 3]
     win_door = choice(doors)
 
-    # Choose list[0], even len(list) == 2. Because, important to choose any other door.
+    # Choose list[0], even len(list) == 2.
+    # Because, important to choose any other door.
     other_door = list(filter(lambda x: x not in [choice_door, win_door], doors))[0]
 
     if agreement:
