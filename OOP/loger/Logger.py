@@ -75,8 +75,8 @@ print(f'Get logs: \n{logger.get_logs()}\n')
 print(f'Last event: \n{logger.get_last_event()}\n')
 print(f'All log files: \n{logger.get_all_logs()}\n')
 
-logger.clear_log()
-print(f'Clear file: {logger.get_logs()}\n')
+#logger.clear_log()
+#print(f'Clear file: {logger.get_logs()}\n')
 
 new_logger = Logger()
 print('Singleton:')
