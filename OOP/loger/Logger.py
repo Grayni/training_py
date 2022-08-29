@@ -1,5 +1,5 @@
 from datetime import date, datetime
-from os import listdir
+from os import listdir, mkdir
 from os.path import isfile, join
 from time import sleep
 
@@ -9,13 +9,18 @@ class Logger(object):
     last_event = ''
 
     # Singleton
-    def __new__(cls):
+    def __new__(cls, path='./'):
         if not hasattr(cls, 'instance'):
             cls.instance = super(Logger, cls).__new__(cls)
         return cls.instance
 
     # Initialization
     def __init__(self, path='./'):
+        self.catalog = [name_file for name_file in listdir('./')]
+        self.name_dir = ''.join([alpha for alpha in path if alpha.isalpha() or alpha.isdigit() or alpha == '_'])
+        if path != './' and self.name_dir not in self.catalog :
+            mkdir(path)
+
         self.path = f'{path}log_{self.day}.{self.month}.{self.year}'
         open(self.path, 'a', encoding='UTF-8').close()
 
@@ -50,7 +55,7 @@ class Logger(object):
         return datetime.now().strftime('%H:%M:%S')
 
 
-logger = Logger()
+logger = Logger(path='./test4/')
 
 # Create events
 events = [
