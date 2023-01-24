@@ -3,3 +3,4 @@ test.py
 test.ipynb
 */__pycache__
 neural_network/data/mnist/
+neural_network/opencv/images/face_dataset/
