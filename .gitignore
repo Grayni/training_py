@@ -4,3 +4,4 @@ test.ipynb
 */__pycache__
 neural_network/data/mnist/
 neural_network/opencv/data/face_dataset/
+neural_network/opencv/images/cars_plates/*
