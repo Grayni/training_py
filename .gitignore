@@ -6,3 +6,4 @@ neural_network/data/mnist/
 neural_network/opencv/data/face_dataset/
 neural_network/opencv/images/cars_plates/*
 neural_network/pytorch/course_1/data
+neural_network/pytorch/course_1/images
