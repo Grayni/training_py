@@ -1,3 +1,4 @@
+.gitignore
 .idea/
 test.py
 test.ipynb
@@ -8,3 +9,5 @@ neural_network/opencv/images/cars_plates/*
 neural_network/pytorch/course_1/data
 neural_network/pytorch/course_1/images
 algorithms/native/data
+tensorflow/datasets/camvid
+tensorflow/unet_camvid.hdf5
