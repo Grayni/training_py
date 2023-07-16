@@ -10,4 +10,7 @@ neural_network/pytorch/course_1/data
 neural_network/pytorch/course_1/images
 algorithms/native/data
 tensorflow/datasets/camvid
+tensorflow/datasets/birds
+tensorflow/datasets/dog_vs_cat
 tensorflow/unet_camvid.hdf5
+tensorflow/save_models/mask_model.h5
