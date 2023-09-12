@@ -15,3 +15,4 @@ tensorflow/datasets/dog_vs_cat
 tensorflow/unet_camvid.hdf5
 tensorflow/save_models/mask_model.h5
 pytorch/data
+business/data/*
