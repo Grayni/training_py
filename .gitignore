@@ -16,3 +16,5 @@ tensorflow/unet_camvid.hdf5
 tensorflow/save_models/mask_model.h5
 pytorch/data
 business/data/*
+business/catboost_info/
+
