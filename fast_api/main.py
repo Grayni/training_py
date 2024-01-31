@@ -4,13 +4,14 @@
 from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+import uvicorn
 
-import reloader_config
+from reloader import reloader
 
 templates = Jinja2Templates(directory="templates")
 
 app = FastAPI(
-    title='Potato',
+    title='New page',
     openapi_url=None,
     docs_url=None,
     redoc_url=None,
@@ -18,13 +19,16 @@ app = FastAPI(
 
 
 @app.get("/", status_code=200, response_class=HTMLResponse)
-def home(request: Request):
-    return templates.TemplateResponse('Home.html', {"request": request,
-                                                "reloader": reloader_config.reloader,
-                                                "title":"Potato"})
+def indexRun(request: Request):
+    return templates.TemplateResponse('index.html', {'request': request, 'reloader': reloader, 'title': 'Main'})
 
 
-@app.websocket("/ws")
+@app.get("/")
+async def root():
+    return "Hello World"
+
+
+@app.websocket('/ws')
 async def websocket_endpoint(websocket: WebSocket):
     try:
         await websocket.accept()
@@ -33,4 +37,4 @@ async def websocket_endpoint(websocket: WebSocket):
         pass
 
 
-# uvicorn examples.001_hello_world:app --reload
+# uvicorn main:app --reload --reload-include="*.html" --reload-include="*.css" --reload-include="*.js"
