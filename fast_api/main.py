@@ -1,31 +1,47 @@
 # pip install fastapi[all]
-# pip install uvicorn-browser
 
-from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
-from fastapi.responses import HTMLResponse
+from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect, Form
+from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.templating import Jinja2Templates
-import uvicorn
+from fastapi.staticfiles import StaticFiles
 
-from reloader import reloader
 
 templates = Jinja2Templates(directory="templates")
 
 app = FastAPI(
-    title='New page',
-    openapi_url=None,
-    docs_url=None,
-    redoc_url=None,
+    title='docs',
+    # openapi_url=None,
+    # docs_url=None,
+    redoc_url=None
 )
 
+app.mount('/static', StaticFiles(directory='static'), name='static')
 
-@app.get("/", status_code=200, response_class=HTMLResponse)
+
+@app.get('/', status_code=200, response_class=HTMLResponse)
 def indexRun(request: Request):
-    return templates.TemplateResponse('index.html', {'request': request, 'reloader': reloader, 'title': 'Main'})
+    return templates.TemplateResponse('index.html', {'request': request, 'title': 'Main'})
 
 
-@app.get("/")
+@app.get('/hello')
 async def root():
     return "Hello World"
+
+
+@app.get('/response', response_class=FileResponse)
+def responseRun():
+    return 'response.html'
+
+
+@app.get('/calculate', response_class=HTMLResponse)
+def calculate(request: Request):
+    return templates.TemplateResponse('calculate.html', {'request': request, 'title': 'Calculate'})
+
+
+@app.post('/calculate')
+def calculate(num1: int = Form(ge=0, lt=111), num2: int = Form(ge=0, lt=111)):
+    print(f'num1={num1}; num2={num2}')
+    return f'Result: {num1 + num2}'
 
 
 @app.websocket('/ws')

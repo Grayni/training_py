@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="container w-25">
+        <form action="calculate" method="post">
+            <div class="row">
+                <label for="num1">a : </label>
+                <input type="number" name="num1"/>
+            </div>
+            <div class="row">
+                <label for="num2">b : </label>
+                <input type="number" name="num2"/>
+            </div>
+            <div class="row d-flex justify-content-center align-items-center">
+                <button type="submit" value="Send" class="btn btn-success w-25 mt-2">Calc</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
