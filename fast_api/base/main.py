@@ -44,6 +44,11 @@ def calculate(num1: int = Form(ge=0, lt=111), num2: int = Form(ge=0, lt=111)):
     return f'Result: {num1 + num2}'
 
 
+@app.get('/custom')
+def read_custom_message():
+    return {'message': 'This is a custom message!'}
+
+
 @app.websocket('/ws')
 async def websocket_endpoint(websocket: WebSocket):
     try:
