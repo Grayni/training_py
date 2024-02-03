@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="container w-25">
+        <form action="user" method="post">
+            <div class="row">
+                <label for="Name">Name: </label>
+                <input type="text" name="name"/>
+            </div>
+            <div class="row">
+                <label for="age">b: </label>
+                <input type="number" name="age"/>
+            </div>
+            <div class="row d-flex justify-content-center align-items-center">
+                <button type="submit" value="Send" class="btn btn-success w-25 mt-2">Send</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
