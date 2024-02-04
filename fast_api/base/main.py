@@ -4,7 +4,7 @@ from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect, Form
 from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
-from models.User import User
+from models.models import User, Feedback
 
 templates = Jinja2Templates(directory="templates")
 
@@ -19,19 +19,12 @@ app.mount('/static', StaticFiles(directory='static'), name='static')
 
 
 # Models
-user_1: User = User(id=1, name='John Doe', age=32)
+user: User = User(id=1, name='John Doe', age=32)
 
 
 @app.get('/users')
 def showUser():
-    return user_1.model_dump()  # dict()
-
-
-# @app.post("/user")
-# async def show_user(usr: User):
-#     return {"name": usr.name,
-#             "age": usr.age,
-#             "is_adult": usr.age >= 18}
+    return user.model_dump()  # dict()
 
 
 @app.get('/user', response_class=HTMLResponse)
@@ -42,6 +35,33 @@ def userFields(request: Request):
 @app.post('/user')
 def ageUser(name: str = Form(...), age: int = Form(ge=0, lt=111)):
     return {'name': name, 'age': age, 'is_adult': age >= 18}
+
+
+fake_users = {
+    1: {"username": "john_doe", "email": "john@example.com"},
+    2: {"username": "jane_smith", "email": "jane@example.com"}
+}
+
+
+@app.get('/users/{user_id}')
+def read_user(user_id: int):
+    if user_id in fake_users:
+        return fake_users[user_id]
+    return {'error': 'User not found'}
+
+
+feedbacks = []
+
+
+@app.post('/feedback')
+async def send_feedback(feedback: Feedback):
+    feedbacks.append({'name': feedback.name, 'message': feedback.message})
+    return {'message': f'Feedback received. Thank you, {feedback.name}'}
+
+
+@app.get('/feedback')
+async def show_feedback():
+    return feedbacks
 
 
 @app.get('/', status_code=200, response_class=HTMLResponse)
