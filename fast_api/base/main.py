@@ -1,10 +1,11 @@
 # pip install fastapi[all]
 
-from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect, Form
+from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect, Form, HTTPException
 from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
-from models.models import User, Feedback
+from models.models import User, Feedback, UserCreate
+from pydantic import ValidationError
 
 templates = Jinja2Templates(directory="templates")
 
@@ -93,6 +94,31 @@ def calculate(num1: int = Form(ge=0, lt=111), num2: int = Form(ge=0, lt=111)):
 @app.get('/custom')
 def read_custom_message():
     return {'message': 'This is a custom message!'}
+
+
+fake_items_db = [{"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"},
+                 {"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"},
+                 {"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"},
+                 {"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"}]
+
+
+@app.get("/fake-items/")
+async def read_item(skip: int = 0, limit: int = 10):
+    return fake_items_db[skip : skip + limit]
+
+
+users: list[UserCreate] = []
+
+
+@app.post("/create-user")
+async def create_user(new_user: UserCreate):
+    users.append(new_user)
+    return new_user
+
+
+@app.get("/showuser")
+async def show_users():
+    return {"users": users}
 
 
 @app.websocket('/ws')
