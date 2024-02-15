@@ -1,6 +1,6 @@
 # pip install fastapi[all]
 
-from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect, Form, HTTPException
+from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect, Form, HTTPException, Body
 from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
@@ -55,7 +55,7 @@ feedbacks = []
 
 
 @app.post('/feedback')
-async def send_feedback(feedback: Feedback):
+async def send_feedback(feedback: Feedback = Body(..., description="test feedback")):
     feedbacks.append({'name': feedback.name, 'message': feedback.message})
     return {'message': f'Feedback received. Thank you, {feedback.name}'}
 
@@ -102,7 +102,7 @@ fake_items_db = [{"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"
                  {"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"}]
 
 
-@app.get("/fake-items/")
+@app.get('/fake-items/')
 async def read_item(skip: int = 0, limit: int = 10):
     return fake_items_db[skip : skip + limit]
 
@@ -110,15 +110,34 @@ async def read_item(skip: int = 0, limit: int = 10):
 users: list[UserCreate] = []
 
 
-@app.post("/create-user")
+@app.post('/create-user')
 async def create_user(new_user: UserCreate):
+    print(new_user)
     users.append(new_user)
     return new_user
 
 
-@app.get("/showuser")
+@app.get('/showuser')
 async def show_users():
     return {"users": users}
+
+
+sample_products = [{"product_id": 123, "name": "Smartphone", "category": "Electronics", "price": 599.99},
+                   {"product_id": 456, "name": "Phone Case", "category": "Accessories", "price": 19.99},
+                   {"product_id": 789, "name": "Iphone", "category": "Electronics", "price": 1299.99},
+                   {"product_id": 101, "name": "Headphones", "category": "Accessories", "price": 99.99},
+                   {"product_id": 202, "name": "Smartwatch", "category": "Electronics", "price": 299.99}]
+
+
+@app.get('/product/{product_id}')
+async def product_info(product_id: int):
+    return [product_info for product_info in sample_products if product_info['product_id'] == product_id][0]
+
+
+@app.get('/products/search')
+async def product_search(keyword: str, category: str = None, limit: int = 10):
+    return [product for product in sample_products
+            if product['category'] == category and keyword in product['name'].lower()][:limit]
 
 
 @app.websocket('/ws')
