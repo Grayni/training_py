@@ -9,6 +9,11 @@ class User(BaseModel):
     age: int
 
 
+class UserAuth(BaseModel):
+    username: str
+    password: str
+
+
 class Feedback(BaseModel):
     name: str
     message: str

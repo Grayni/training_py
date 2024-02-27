@@ -1,11 +1,12 @@
 # pip install fastapi[all]
 
-from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect, Form, HTTPException, Body
+from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect, Form, Body, Cookie, Response
 from fastapi.responses import HTMLResponse, FileResponse
-from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
-from models.models import User, Feedback, UserCreate
-from pydantic import ValidationError
+from fastapi.templating import Jinja2Templates
+from datetime import datetime
+
+from models.models import User, Feedback, UserCreate, UserAuth
 
 templates = Jinja2Templates(directory="templates")
 
@@ -22,6 +23,43 @@ app.mount('/static', StaticFiles(directory='static'), name='static')
 # Models
 user: User = User(id=1, name='John Doe', age=32)
 
+
+@app.get('/cookie')
+def cookie(response: Response):
+    now = datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
+    response.set_cookie(key='last_visit', value=now)
+    return {"message": "cookies set", "last visit": now}
+
+
+sample_user: dict = {"username": "user123", "password": "password123"}
+fake_db: list[UserAuth] = [UserAuth(**sample_user)]
+sessions: dict = {}
+
+
+@app.post('/login')
+def login(response: Response, user: UserAuth):
+    for person in fake_db:
+        if person.username == user.username and person.password == user.password:
+            session_token = 'abc1234'
+            sessions[session_token] = user
+
+            response.set_cookie(key='session_token', value=session_token, httponly=True)
+            return {'message': 'cookies set'}
+    return {'message': 'invalid username or password'}
+
+
+@app.get('/user')
+async def user_info(session_token=Cookie()):
+    user = sessions.get(session_token)
+
+    if user:
+        return user.dict()
+    return {'message': 'invalid session token'}
+
+
+@app.post('/logout', status_code=204)
+async def logout_user(response: Response):
+    response.delete_cookie('example_access_token')
 
 @app.get('/users')
 def showUser():
