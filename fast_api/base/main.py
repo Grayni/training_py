@@ -178,6 +178,7 @@ async def product_search(keyword: str, category: str = None, limit: int = 10):
             if product['category'] == category and keyword in product['name'].lower()][:limit]
 
 
+
 @app.websocket('/ws')
 async def websocket_endpoint(websocket: WebSocket):
     try:
