@@ -1,4 +1,5 @@
 # pip install fastapi[all]
+# uvicorn main:app --reload --reload-include="*.html" --reload-include="*.css" --reload-include="*.js"
 
 from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect, Form, Body, Cookie, Response, Header
 from typing import Annotated
@@ -40,6 +41,14 @@ sessions: dict = {}
 @app.get('/items/')
 async def read_items(user_agent: Annotated[str | None, Header()] = None):
     return {"User-Agent": user_agent}
+
+
+X_Tokens = ['foo', 'bar']
+
+
+@app.get('/x_token')
+async def read_items(x_token: Annotated[list[str] | None, Header()] = None):
+    return {"X-Token values": x_token}
 
 
 @app.post('/login')
@@ -193,4 +202,4 @@ async def websocket_endpoint(websocket: WebSocket):
         pass
 
 
-# uvicorn main:app --reload --reload-include="*.html" --reload-include="*.css" --reload-include="*.js"
+
