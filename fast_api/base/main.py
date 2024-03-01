@@ -1,6 +1,7 @@
 # pip install fastapi[all]
 
-from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect, Form, Body, Cookie, Response
+from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect, Form, Body, Cookie, Response, Header
+from typing import Annotated
 from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -34,6 +35,11 @@ def cookie(response: Response):
 sample_user: dict = {"username": "user123", "password": "password123"}
 fake_db: list[UserAuth] = [UserAuth(**sample_user)]
 sessions: dict = {}
+
+
+@app.get('/items/')
+async def read_items(user_agent: Annotated[str | None, Header()] = None):
+    return {"User-Agent": user_agent}
 
 
 @app.post('/login')
@@ -176,7 +182,6 @@ async def product_info(product_id: int):
 async def product_search(keyword: str, category: str = None, limit: int = 10):
     return [product for product in sample_products
             if product['category'] == category and keyword in product['name'].lower()][:limit]
-
 
 
 @app.websocket('/ws')
