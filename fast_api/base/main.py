@@ -51,6 +51,23 @@ async def read_items(x_token: Annotated[list[str] | None, Header()] = None):
     return {"X-Token values": x_token}
 
 
+@app.get('/get_user_agent')
+async def user_agent(user_agent: str = Header()):
+    return {'User-Agent': user_agent}
+
+
+@app.get('/response_user_agent')
+async def resp_user_agent():
+    data = 'hello from here'
+    return Response(content=data, media_type='text/plain', headers={'Secret-Code': '12345'})
+
+
+@app.get('/new_user_agent')
+async def new_user_agent(response: Response):
+    response.headers['Secret-Code'] = '123456'
+    return {'message': 'Hello from my api'}
+
+
 @app.post('/login')
 def login(response: Response, user: UserAuth):
     for person in fake_db:
