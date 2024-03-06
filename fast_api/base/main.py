@@ -68,6 +68,13 @@ async def new_user_agent(response: Response):
     return {'message': 'Hello from my api'}
 
 
+@app.get('/headers')
+async def headers(user_agent: Annotated[str | None, Header()]):
+    data = 'new headers'
+    return Response(content=data, media_type='text/plain', headers={
+        'User-Agent': user_agent, 'Accept-Language': 'en-US,en;q=0.9,es;q=0.8'})
+
+
 @app.post('/login')
 def login(response: Response, user: UserAuth):
     for person in fake_db:
