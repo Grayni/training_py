@@ -1,7 +1,7 @@
 # pip install fastapi[all]
 # uvicorn main:app --reload --reload-include="*.html" --reload-include="*.css" --reload-include="*.js"
-
-from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect, Form, Body, Cookie, Response, Header
+import re
+from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect, Form, Body, Cookie, Response, Header, HTTPException
 from typing import Annotated
 from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -74,6 +74,29 @@ async def headers(user_agent: Annotated[str | None, Header()]):
     return Response(content=data, media_type='text/plain', headers={
         'User-Agent': user_agent, 'Accept-Language': 'en-US,en;q=0.9,es;q=0.8'})
 
+
+def check_headers(headers: Request.headers):
+    if "User-Agent" not in headers:
+        raise HTTPException(status_code=400, detail="The User-Agent header not found!")
+
+    if "Accept-Language" not in headers:
+        raise HTTPException(status_code=400, detail="The Accept-Language header not found!")
+
+    pattern = r"(?i:(?:\*|[a-z\-]{2,5})(?:;q=\d\.\d)?,)+(?:\*|[a-z\-]{2,5})(?:;q=\d\.\d)?"
+    if not re.fullmatch(pattern, headers["Accept-Language"]):
+        raise HTTPException(
+            status_code=400,
+            detail="The Accept-Language header is not in the correct format"
+        )
+
+
+@app.get("/headers2")
+async def get_headers(request: Request) -> dict:
+    check_headers(request.headers)
+    return {
+        "User-Agent": request.headers["user-agent"],
+        "Accept-Language": request.headers["accept-language"]
+    }
 
 @app.post('/login')
 def login(response: Response, user: UserAuth):
