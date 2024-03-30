@@ -1,4 +1,4 @@
-import jwt
+import jwt_oauth2
 
 SECRET_KEY = 'mysecretkey'
 ALGORITHM = 'HS256'
