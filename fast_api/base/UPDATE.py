@@ -3,7 +3,6 @@
 from fastapi import FastAPI, HTTPException
 from databases import Database
 from pydantic import BaseModel
-from typing import Optional
 
 app = FastAPI()
 
@@ -23,13 +22,14 @@ class UserCreate(BaseModel):
 class UserReturn(BaseModel):
     username: str
     email: str
-    id: Optional[int] = None
+    id: int | None
 
 
 # тут устанавливаем условия подключения к базе данных и отключения
 @app.on_event("startup")
 async def startup_database():
     await database.connect()
+
 
 @app.on_event("shutdown")
 async def shutdown_database():
