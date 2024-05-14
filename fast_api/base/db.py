@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String, Text, ForeignKey
+from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Text
 from sqlalchemy.orm import declarative_base
 
 engine = create_engine('postgresql://omenbest:test1234@localhost:5432/mydatabase')
@@ -40,3 +40,16 @@ class Friend(Base):
     name = Column(String)
     user_id = Column(Integer, ForeignKey('users.id'))
 
+
+class Product(Base):
+    __tablename__ = 'products'
+
+    id = Column(Integer, primary_key=True)
+    title = Column(String(255), nullable=True)
+    description = Column(String(255), nullable=True)
+    price = Column(Integer, nullable=False)
+    count = Column(Integer, nullable=False)
+
+
+# alembic revision --autogenerate -m "text"
+# alembic upgrade head
