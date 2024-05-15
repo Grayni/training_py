@@ -13,7 +13,7 @@ class CustomException(HTTPException):
 
 # пример маршрута, который райзит (выбрасывает) кастомное исключение
 @app.get('/items/{item_id}/')
-async def read_item(item_id: int):
+def read_item(item_id: int):
     if item_id == 42:
         raise CustomException(detail="Item not found", status_code=404)
     return {'item_id': item_id}
