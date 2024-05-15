@@ -17,4 +17,5 @@ tensorflow/save_models/mask_model.h5
 pytorch/data
 business/data/*
 business/catboost_info/
+selenium/
 
