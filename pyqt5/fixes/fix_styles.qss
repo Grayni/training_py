@@ -1,0 +1,17 @@
+/* Works for both QListView and QListWidget */
+QListView::item {
+    /* Won't work without borders set */
+    border: 0px;
+
+    padding-left: 10px;
+}
+
+/* For icon only */
+QListView::icon {
+    left: 10px;
+}
+
+/* For text only */
+QListView::text {
+    left: 10px;
+}
