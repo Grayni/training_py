@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QTableView
 from PyQt5.QtCore import QAbstractTableModel, Qt
-import pandas as pd
+import pandas_table as pd
 
 
 df = pd.DataFrame({'a': ['Mary', 'Jim', 'John'],
