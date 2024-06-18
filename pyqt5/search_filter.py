@@ -1,0 +1,45 @@
+import sys
+from PyQt5.QtWidgets import QApplication, QWidget, QLineEdit, QTableView, QHeaderView, QVBoxLayout
+from PyQt5.QtCore import Qt, QSortFilterProxyModel
+from PyQt5.QtGui import QStandardItemModel, QStandardItem
+
+
+class MainWindow(QWidget):
+    def __init__(self):
+        super().__init__()
+        mainLayout = QVBoxLayout()
+        self.resize(800, 600)
+
+        companies = ('Apple', 'Facebook', 'Google', 'Amazon', 'Walmart', 'Dropbox', 'Starbucks', 'eBay', 'Canon')
+        model = QStandardItemModel(len(companies), 1)
+        model.setHorizontalHeaderLabels(['Company'])
+
+        for row, company in enumerate(companies):
+            item = QStandardItem(company)
+            model.setItem(row, 0, item)
+
+        filter_proxy_model = QSortFilterProxyModel()
+        filter_proxy_model.setSourceModel(model)
+        filter_proxy_model.setFilterCaseSensitivity(Qt.CaseInsensitive)
+
+        search_field = QLineEdit()
+        search_field.setStyleSheet('font-size: 15px; height: 60px;')
+        search_field.textChanged.connect(filter_proxy_model.setFilterRegExp)
+        mainLayout.addWidget(search_field)
+
+        table = QTableView()
+        table.setStyleSheet('font-size: 15px;')
+        table.verticalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        table.setModel(filter_proxy_model)
+        mainLayout.addWidget(table)
+
+        self.setLayout(mainLayout)
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    demo = MainWindow()
+    demo.show()
+
+    sys.exit(app.exec_())
