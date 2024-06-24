@@ -18,7 +18,7 @@ class MainWindow(QWidget):
         layout.addWidget(self.listWidget)
 
     def eventFilter(self, source, event):
-        if event.type() == QEvent.ContextMenu and self.listWidget:
+        if event.type() == QEvent.ContextMenu and source is self.listWidget:
             menu = QMenu()
             menu.addAction('Action 1')
             menu.addAction('Action 2')
